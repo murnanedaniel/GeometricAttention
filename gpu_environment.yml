@@ -1,0 +1,15 @@
+name: geometric-attention
+
+channels:
+    - pytorch
+    - pyg
+    - conda-forge
+
+dependencies:
+    - python=3.9
+    - pip
+    - cudatoolkit=11.6
+    - pytorch=1.12.1
+    - pytorch-lightning
+    - pyg
+    

@@ -1,0 +1,26 @@
+input_dir: /MY_DATA_PATH/raw_input
+output_dir: /MY_DATA_PATH/processed_input_pyg
+subdirs: [val, test, train]
+
+feature_scales:
+    jet_pt: 1000.
+    log_delta_pt: 10.
+    delta_pt: 1.
+    jet_mass: 100.
+    pE: 100.
+    jet_phi: 3.14159
+    jet_eta: 3.14159
+    jet_px: 1000.
+    px: 100.
+    jet_pz: 1000.
+    delta_eta: 1.
+    log_delta_E: 10.
+    jet_pE: 1000.
+    delta_phi: 1.
+    delta_E: 1.
+    log_E: 10.
+    log_pt: 10.
+    py: 100.
+    jet_py: 1000.
+    delta_R: 1.
+    pz: 100.
