@@ -13,7 +13,7 @@ the Topology Problem. We test this architecture, called GravNetNorm, on the task
 top jet tagging, and show that it is competitive in tagging accuracy, and uses far
 fewer computational resources than all other comparable models.
 
-**n.b. An initial version of this work (paper and poster) referred to the proposed model as *GravNet++*. This name has been changed to *GravNetNorm* to avoid confusion - the proposed model is not an "uprade" of GravNet, but rather a different choice of normalization and training procedure.**
+**n.b. An initial version of this work (paper and poster) referred to the proposed model as *GravNet++*. This name has been changed to *GravNetNorm* to avoid confusion - the proposed model is not an "upgrade" of GravNet, but rather a different choice of normalization and training procedure.**
 
 ## Repository Structure
 All scripts to run from the commandline are available at the top-level: `preprocess_events.py`, `train_model.py` and `evaluate_model.py`. These scripts call upon config files in the `Config` directory. They use the Pytorch Lightning modules in the `LightningModules` directory. In that directory, `jet_gnn_base.py` contains a Lightning class that handles all training logic. The `Models/gravnet.py` contains our implementation of the `GravNet` class, which can handle both the vanilla GravNet convolution, and our model GravNetNorm.
