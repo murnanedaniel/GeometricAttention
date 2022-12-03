@@ -1,0 +1,57 @@
+# Data params
+input_dir: /MY_DATA_PATH/processed_input_pyg/
+artifacts: /MY_DATA_PATH/artifacts/
+project: GeometricAttention
+model: GravNet
+gpus: 1
+nodes: 1
+
+# Dataset parameters
+data_split: [1200000,400000,400000]
+feature_set: [pE, py, px, pz, delta_eta, log_delta_E, delta_phi, log_pt, log_E, log_delta_pt, delta_pt, delta_E, delta_R,
+              jet_pt, jet_mass, jet_phi, jet_eta, jet_pE, jet_px, jet_py, jet_pz]
+
+# Training params
+max_epochs: 3
+lr: 0.003
+factor: 0.9
+patience: 2
+warmup: 10
+scheduler: StepLR
+train_batch: 800
+val_batch: 800
+final_dropout: 0.2 # The dropout of the final layer
+feature_dropout: 0. # This is the dropout within the GNN convolutions
+spatial_dropout: 0.
+signal_goal: 0.3 # The efficiency goal for the signal jets
+pos_weight: 1.
+
+# MLP params
+edge_cut: 0.5
+spatial_channels:
+layernorm: True
+batchnorm: True
+aggregation: mean_sum
+hidden_activation: SiLU
+output_activation: 
+
+# Layer Structure
+hidden: 256
+n_graph_iters: 3
+nb_node_layer: 3
+nb_edge_layer: 3
+concat_all_layers: True
+layer_shape: flat
+
+# GravNet-specific parameters
+knn: 
+rand_k: 
+
+r: 0.1
+max_knn: 16
+
+emb_dims: 64
+grav_weight: 3.0
+norm_hidden: True
+norm_embedding: True
+self_loop: False
