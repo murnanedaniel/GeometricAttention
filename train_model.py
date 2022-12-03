@@ -49,7 +49,6 @@ def train(config):
         config.update(loaded_configs)
 
     model_name = config["model"]
-    # config["data_split"][2] = 0 # For training, we don't need to load test data
     if model_name in globals():
         model = globals()[model_name](config)
     else:

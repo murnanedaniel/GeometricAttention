@@ -4,7 +4,10 @@
 *.pyg*
 *wandb*
 *logs*
+<<<<<<< HEAD
 **logs**
+=======
+>>>>>>> 901bbf772016284e689e36e4cf3b79e07aaa023f
 *.ckpt*
 *_dev**
 **_dev**

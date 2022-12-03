@@ -43,7 +43,11 @@ def evaluate(config):
     else:
         raise ValueError(f"Model name {model_name} not found in globals")
 
+<<<<<<< HEAD
     # model.hparams["data_split"][0], model.hparams["data_split"][1] = 0, 0 # For testing, we don't need train or val data
+=======
+    model.hparams["data_split"][0], model.hparams["data_split"][1] = 0, 0 # For testing, we don't need train or val data
+>>>>>>> 901bbf772016284e689e36e4cf3b79e07aaa023f
     accelerator = "gpu" if torch.cuda.is_available() else None
     trainer = Trainer(
         gpus=config["gpus"],

@@ -28,6 +28,7 @@ class JetGNNBase(LightningModule):
         if "graph_construction" not in self.hparams: self.hparams["graph_construction"] = None
         self.trainset, self.valset, self.testset = None, None, None
 
+<<<<<<< HEAD
     def setup(self, stage="fit"):
 
         data_split = self.hparams["data_split"]
@@ -40,6 +41,13 @@ class JetGNNBase(LightningModule):
         if (self.trainset is None) and (self.valset is None) and (self.testset is None):
             self.trainset, self.valset, self.testset = load_processed_datasets(self.hparams["input_dir"], 
                                                         data_split,
+=======
+    def setup(self, stage):
+
+        if (self.trainset is None) and (self.valset is None) and (self.testset is None):
+            self.trainset, self.valset, self.testset = load_processed_datasets(self.hparams["input_dir"], 
+                                                        self.hparams["data_split"],
+>>>>>>> 901bbf772016284e689e36e4cf3b79e07aaa023f
                                                         self.hparams["graph_construction"]
                                                         )
         
