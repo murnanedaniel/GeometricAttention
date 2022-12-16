@@ -1,5 +1,5 @@
 # Geometric Attention Is All You Need
-*Project repository to accompany the poster and article [Graph Structure From Point Clouds: Geometric Attention Is All You Need](https://neurips.cc/virtual/2022/workshop/49979#wse-detail-56982)*
+*Project repository to accompany the poster and article [Graph Structure From Point Clouds: Geometric Attention Is All You Need](https://ml4physicalsciences.github.io/2022/#:~:text=Graph%20Structure%20from%20Point%20Clouds%3A%20Geometric%20Attention%20is%20All%20You%20Need)*
 
 ## Abstract
 The use of graph neural networks has produced significant advances in point
