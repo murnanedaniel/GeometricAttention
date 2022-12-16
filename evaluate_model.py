@@ -1,6 +1,7 @@
 import os
 import yaml
 import click
+from pathlib import Path
 
 import torch
 from pytorch_lightning.loggers import WandbLogger
@@ -33,21 +34,19 @@ def main(config):
     
 def evaluate(config):
 
-    checkpoint_path = os.path.join(config["artifacts"], "best.ckpt")
-    if not os.path.exists(checkpoint_path):
-        raise ValueError(f"Checkpoint {checkpoint_path} does not exist")
-    checkpoint = torch.load(checkpoint_path)
+    try:
+        checkpoint_path = max((str(path) for path in Path(config["artifacts"]).rglob("best*.ckpt")), key=os.path.getctime)
+    except:
+        raise ValueError(f"No checkpoint saved for {config['artifacts']}")
+
+    print(f"Loading checkpoint: {checkpoint_path}")
+    checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
     model_name = checkpoint["hyper_parameters"]["model"]
     if model_name in globals():
         model = globals()[model_name].load_from_checkpoint(checkpoint_path)
     else:
         raise ValueError(f"Model name {model_name} not found in globals")
 
-<<<<<<< HEAD
-    # model.hparams["data_split"][0], model.hparams["data_split"][1] = 0, 0 # For testing, we don't need train or val data
-=======
-    model.hparams["data_split"][0], model.hparams["data_split"][1] = 0, 0 # For testing, we don't need train or val data
->>>>>>> 901bbf772016284e689e36e4cf3b79e07aaa023f
     accelerator = "gpu" if torch.cuda.is_available() else None
     trainer = Trainer(
         gpus=config["gpus"],

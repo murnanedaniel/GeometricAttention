@@ -65,17 +65,10 @@ This will run the best model checkpoint (as determined by validation AUC) on the
 ## Citation
 If you use this code in your research, for now please cite the conference submission:
 ```
-<<<<<<< HEAD
 @conference{geometric-attention,
   title={Graph Structure From Point Clouds: Geometric Attention Is All You Need},
   author={Daniel Murnane},
   booktitle={NeurIPS Workshop on Machine Learning and the Physical Sciences},
-=======
-@inproceedings{geometric-attention,
-  title={Graph Structure From Point Clouds: Geometric Attention Is All You Need},
-  author={Daniel Murnane},
-  booktitle={NeurIPS Workshop on Graph Representation Learning},
->>>>>>> 901bbf772016284e689e36e4cf3b79e07aaa023f
   year={2022}
 }
 ```
