@@ -1,0 +1,7 @@
+numpy
+pandas
+tables
+scipy
+matplotlib
+click
+tqdm
