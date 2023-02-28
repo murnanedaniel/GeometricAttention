@@ -93,18 +93,21 @@ def hdf5_to_pyg_event(jet_entry, feature_scales):
     
 
 def hdf5_to_pyg_events(input_file, output_dir, feature_scales, start=0, stop=None):
-    with pd.HDFStore(input_file, mode = 'r') as store:
-        jets_df = store['table']
-    jets_df = jets_df.iloc[start:stop]
     os.makedirs(output_dir, exist_ok=True)
     print("Processing files")
-
-    jet_batch = []
     batch_size = 100000
-    for jet_id, jet_tuple in enumerate(tqdm(jets_df.itertuples(), total=len(jets_df))):
-        jet_batch.append(hdf5_to_pyg_event((jet_tuple, jet_id), feature_scales))
-        if len(jet_batch) == batch_size:
-            print(jet_id)
-            print(f"Saving batch to file {output_dir}/{jet_id//batch_size}.pt")
-            torch.save(jet_batch, f"{output_dir}/{jet_id//batch_size}.pt")
-            jet_batch = []
+
+    data_iter = pd.read_hdf(input_file, key='table', iterator=True, chunksize=batch_size)
+    i=0
+    for chunk in data_iter:
+        if stop is not None and (i*batch_size >= stop):
+            break
+
+        jet_batch = []
+        for jet_id, jet_tuple in enumerate(tqdm(chunk.itertuples(), total=len(chunk))):
+            final_id = jet_id + i * batch_size
+            if final_id >= start and (stop is None or final_id < stop):
+                jet_batch.append(hdf5_to_pyg_event((jet_tuple, final_id), feature_scales))
+        print(f"Saving batch to file {output_dir}/{i}.pt")
+        torch.save(jet_batch, f"{output_dir}/{i}.pt")
+        i+=1
